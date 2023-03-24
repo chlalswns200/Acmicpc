@@ -1,0 +1,41 @@
+def dfs(graph,v,visited):
+  visited[v] = True
+  print(v,end=" ")
+  for i in graph[v]:
+    if not visited[i]:
+      dfs(graph,i,visited)
+
+def bfs(graph,v,visited):
+  queue = []
+  queue.append(v)
+  visited[v] = True
+
+  while(queue):
+    val = queue.pop(0)
+    print(val,end=" ")
+    for i in graph[val]:
+      if not visited[i]:
+        queue.append(i)
+        visited[i]=True
+
+n,e,v = map(int,input().split())
+
+graph = []
+for i in range(n+1):
+  graph.append([])
+
+for i in range(e):
+  gn,ge = map(int,input().split())
+  graph[gn].append(ge)
+  graph[ge].append(gn)
+
+visited=[False]*(n+1)
+
+for i in range(len(graph)):
+  graph[i] = sorted(graph[i])
+  
+  
+dfs(graph,v,visited)
+visited=[False]*(n+1)
+print()
+bfs(graph,v,visited)
