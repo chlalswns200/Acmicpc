@@ -1,0 +1,12 @@
+n = int(input())
+array = list(map(int,input().split()))
+sumList = []
+
+array = sorted(array)
+for i in range(len(array)):
+  sumI = 0
+  for j in range(i+1):
+    sumI+=array[j]
+  sumList.append(sumI)
+
+print(sum(sumList))
