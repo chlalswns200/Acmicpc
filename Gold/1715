@@ -1,0 +1,21 @@
+import sys
+import heapq
+
+input = sys.stdin.readline
+n = int(input())
+list = []
+total = 0
+
+for _ in range(n):
+    heapq.heappush(list, int(input()))
+ 
+if len(list) == 1:
+    print(0)
+    
+else:
+    while len(list) > 1:
+        left = heapq.heappop(list)
+        right = heapq.heappop(list)
+        heapq.heappush(list, left+right)
+        total = total + (left+right)
+    print(total)
