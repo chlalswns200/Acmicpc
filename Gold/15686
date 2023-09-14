@@ -1,0 +1,39 @@
+import sys
+from itertools import combinations
+
+input = sys.stdin.readline
+graph = []
+
+
+def chicken_road(x1,y1,x2,y2):
+  return abs(x1-x2)+abs(y1-y2)
+
+n,m = map(int,input().split())
+for _ in range(n):
+  graph.append(list(map(int,input().split())))
+
+chicken = []
+house = []
+for i in range(len(graph)):
+  for j in range(len(graph)):
+    if graph[i][j] == 2:
+      chicken.append((i+1,j+1))
+    elif graph[i][j] == 1:
+      house.append((i+1,j+1))
+
+chicken_com = list(combinations(chicken,m))
+
+def get_sum(chicken_com):
+  result = 0
+  for hx,hy in house:
+    tmp = int(1e9)
+    for cx,cy in chicken_com:
+      tmp = min(tmp, chicken_road(hx,hy,cx,cy))
+    result +=tmp
+  return result
+
+result = int(1e9)
+for i in chicken_com:
+  result = min(result, get_sum(i))
+
+print(result)
