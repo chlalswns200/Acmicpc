@@ -1,0 +1,41 @@
+from collections import deque
+import sys
+
+t = int(input())
+input = sys.stdin.readline
+
+for _ in range(t):
+    command_line = input().strip()
+
+    array_num = int(input())
+    number_q = deque()
+    flag = 1
+    array_str = input().strip()
+    if array_num >0:
+        number_q = deque(array_str[1:-1].split(','))
+    else:
+        number_q = deque()
+
+    r_cnt = 0
+    for i in command_line:
+        cmd = i
+        if cmd == "R":
+          r_cnt+=1
+        else:
+            if len(number_q) <= 0:
+                print("error")
+                flag = 0
+                break
+            if r_cnt%2==0:
+              number_q.popleft()
+            else:
+              number_q.pop()
+
+    if flag == 0:
+        continue
+    else:
+        if r_cnt % 2 == 0:
+            print('[' + ",".join(number_q) + ']')
+        else:
+            number_q.reverse()
+            print('[' + ",".join(number_q) + ']')
