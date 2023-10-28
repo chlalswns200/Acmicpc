@@ -1,0 +1,18 @@
+import sys
+
+input = sys.stdin.readline
+n,m = map(int,input().split())
+
+vocas = {}
+for i in range(n):
+  v = input().rstrip()
+  if v in vocas:
+    vocas[v] +=1
+  else:
+    vocas[v] = 1
+
+vocas = sorted(vocas.items(), key=lambda x: (-x[1], -len(x[0]), x[0]))
+
+for i in vocas:
+  if len(i[0])>=m:
+    print(i[0])
