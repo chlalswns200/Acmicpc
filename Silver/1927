@@ -1,0 +1,17 @@
+import heapq,sys
+
+input = sys.stdin.readline
+
+N = int(input())
+
+hq = []
+for _ in range(N):
+  x = int(input())
+  if x == 0:
+    if hq == []:
+      print(0)
+    else:
+      val = heapq.heappop(hq)
+      print(val)
+  else:
+    heapq.heappush(hq,x)
