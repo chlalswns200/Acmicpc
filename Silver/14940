@@ -1,0 +1,52 @@
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+
+n,m = map(int,input().split())
+
+ar = []
+result = []
+
+for i in range(n):
+  ar.append(list(map(int,input().split())))
+
+for i in range(n):
+  result.append([0]*m)
+
+dx = [-1,1,0,0]
+dy = [0,0,1,-1]
+
+for i in range(n):
+  for j in range(m):
+    if ar[i][j] == 2:
+      sx,sy = i,j
+
+q = deque()
+q.append((sx,sy))
+
+cnt = 0
+while q:
+  x,y = q.popleft()
+  for i in range(4):
+    nx = x+dx[i]
+    ny = y+dy[i]
+    if nx < 0 or nx >= n or ny < 0 or ny >= m:
+      continue
+    if ar[nx][ny] == 0:
+      continue
+    if ar[nx][ny] == 1:
+      ar[nx][ny] = 0
+      q.append((nx,ny))
+      ar[nx][ny] = ar[x][y]+1
+      result[nx][ny] = result[x][y]+1
+
+for i in range(len(result)):
+  for j in range(len(result[i])):
+    if ar[i][j] == 1 and result[i][j] == 0:
+      result[i][j] = -1
+
+for i in result:
+  for j in i:
+    print(j, end =" ")
+  print()
