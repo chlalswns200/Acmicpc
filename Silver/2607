@@ -1,0 +1,23 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+a = input().rstrip()
+total = 0
+
+for i in range(n-1):
+  tmp = a[:]
+  cnt = 0
+  b = input().rstrip()
+  for j in b:
+    if j in tmp:
+      tmp = tmp.replace(j,'',1)
+    else:
+      cnt+=1
+  if cnt<2 and len(tmp) < 2:
+    total+=1
+
+
+print(total)
+  
