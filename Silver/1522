@@ -1,0 +1,9 @@
+str = input()
+a_cnt = str.count('a')
+str += str[0:a_cnt-1]
+min_val = int(1e9)
+
+for i in range(len(str)-(a_cnt-1)):
+  min_val = min(min_val, str[i:i+a_cnt].count('b'))
+
+print(min_val)
