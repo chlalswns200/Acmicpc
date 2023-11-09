@@ -1,0 +1,20 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+towers = list(map(int, input().split()))
+
+s = [0]*(n)
+stack = []
+
+for i,t in enumerate(towers):
+    while stack and stack[-1][1] <= t:
+        stack.pop()
+
+    if stack:
+        s[i] = stack[-1][0]
+
+    stack.append((i+1, t))
+
+print(*s)
