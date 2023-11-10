@@ -1,0 +1,20 @@
+import sys
+
+input = sys.stdin.readline
+
+n,m = map(int,input().split())
+
+ar = list(map(int,input().split()))
+
+end = 0
+sub = 0
+cnt = 0
+for start in range(n):
+  while sub<m and end<n:
+    sub+=ar[end]
+    end+=1
+  if sub == m:
+    cnt+=1
+  sub -= ar[start]
+
+print(cnt)
