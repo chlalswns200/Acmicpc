@@ -1,0 +1,17 @@
+import sys
+
+input = sys.stdin.readline
+n,m = map(int,input().split())
+ar = list(map(int,input().split()))
+
+prefix = [0]
+tmp = 0
+
+for i in ar:
+  tmp += i
+  prefix.append(tmp)
+
+for j in range(m):
+  s,e = map(int,input().split())
+  s-=1
+  print(prefix[e]-prefix[s])
