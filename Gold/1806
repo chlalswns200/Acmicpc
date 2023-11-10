@@ -1,0 +1,25 @@
+import sys
+
+input = sys.stdin.readline
+
+n,m = map(int,input().split())
+ar = list(map(int,input().split()))
+sub = 0
+end = 0
+
+n = len(ar)
+ml = int(1e9)
+for start in range(n):
+  flag = False
+  while sub<m and end<n:
+    sub += ar[end]
+    end +=1
+    flag = True
+  if sub >= m and m != 0:
+      ml = min((end-start),ml)
+  sub -= ar[start]
+
+if ml == int(1e9):
+  print(0)
+else:
+  print(ml)  
