@@ -1,0 +1,23 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+t = int(input())
+
+for _ in range(t):
+  n = int(input())
+  prices = deque(map(int,input().split()))
+  total = 0
+  subq = []
+  while prices:
+    last = prices.pop()
+    while prices and prices[-1]<last:
+      price = prices.pop()
+      subq.append(price)
+    l = len(subq)
+    tmp = 0
+    while subq:
+      tmp += subq.pop()
+    total+= (last * l) - tmp
+    
+  print(total)
