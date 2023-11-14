@@ -1,0 +1,29 @@
+import sys
+from collections import defaultdict
+
+input = sys.stdin.readline
+
+t = int(input())
+
+for _ in range(t):
+  w = input().rstrip()
+  k = int(input())
+  l = len(w)
+  idxDict = defaultdict(list)
+
+  for i in range(l):
+    if w.count(w[i]) >= k:
+      idxDict[w[i]].append(i)
+
+  if not idxDict:
+    print(-1)
+    continue
+
+  al = int(1e9)
+  bl = 1
+  for idx in idxDict.values():
+    for j in range(len(idx)-k+1):
+      tmp = idx[j+k-1] - idx[j] + 1
+      al = min(al,tmp)
+      bl = max(bl,tmp)
+  print(al, bl)
