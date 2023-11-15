@@ -1,0 +1,25 @@
+import sys
+input = sys.stdin.readline
+
+h,w = map(int,input().split())
+rain = list(map(int,input().split()))
+
+ar = [[False]*w for _ in range(h)]
+
+total = 0
+for idx,value in enumerate(rain):
+  for i in range(h-value,h):
+    ar[i][idx] = True
+
+for i in range(h):
+  end = 0
+  start = 0
+  tmp = []
+  for j in range(w):
+    if ar[i][j]:
+      tmp.append(j)
+  for k in range(len(tmp)-1):
+    if tmp[k+1]-tmp[k] > 1:
+      total+= tmp[k+1] - tmp[k] - 1
+      
+print(total)      
