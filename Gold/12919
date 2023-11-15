@@ -1,0 +1,19 @@
+import sys
+sys.setrecursionlimit(10**8)
+
+a = input()
+b = input()
+
+def sol(b):
+  if b==a:
+      print(1)
+      sys.exit()
+  if len(b)==0:
+      return 0
+  if b[-1]=='A': 
+    sol(b[:-1])
+  if b[0]=='B':
+    sol(b[1:][::-1])
+    
+sol(b)
+print(0)
