@@ -1,0 +1,32 @@
+import sys
+import heapq
+
+input = sys.stdin.readline
+
+n, m = map(int,input().split())
+
+graph = [[] for _ in range(n+1)]
+distance = [int(1e9)]*(n+1)
+
+for _ in range(m):
+  s,e,c = map(int,input().split())
+  graph[s].append((e,c))
+  graph[e].append((s,c))
+
+def distra(start):
+  hq = []
+  distance[start] = 0
+
+  heapq.heappush(hq,(0,start))
+  while hq:
+    dist,now = heapq.heappop(hq)
+    if distance[now] < dist:
+      continue
+    for i in graph[now]:
+      cost = dist+i[1]
+      if distance[i[0]]>cost:
+        distance[i[0]] = cost
+        heapq.heappush(hq, (cost,i[0]))
+
+distra(1)
+print(distance[n])
