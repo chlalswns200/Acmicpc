@@ -1,0 +1,36 @@
+n = int(input())
+target = int(input())
+tn = n
+
+ar = [[0]*n for _ in range(n)]
+for i in range(n):
+    for j in range(n):
+        ar[i][j] = 0
+
+cnt = n*n
+row = -1
+col = 0
+trans = 1
+
+targetIdx = []
+while n>0:
+    for i in range(n):
+        row+=trans
+        ar[row][col] = cnt
+        cnt-=1
+    n-=1
+    for i in range(n):
+        col+=trans
+        ar[row][col] = cnt
+        cnt -=1
+    trans*=-1
+
+for i in range(tn):
+    for j in range(tn):
+        print(ar[i][j],end =" ")
+        if ar[i][j] == target:
+            targetIdx.append(i+1)
+            targetIdx.append(j+1)
+    print()
+
+print(*targetIdx)
