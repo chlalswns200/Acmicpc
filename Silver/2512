@@ -1,0 +1,27 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+ar = list(map(int,input().split()))
+m = int(input())
+
+start = 0
+end = max(ar)
+
+lb = 0
+while start<=end:
+    mid = (start+end)//2
+    total = 0
+    for i in ar:
+        if i>mid:
+            total+=mid
+        else:
+            total+= i
+    if total<=m:
+        start = mid + 1
+        lb = mid
+    else:
+        end = mid- 1
+
+print(lb)
