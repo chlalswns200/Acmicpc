@@ -1,0 +1,33 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+ar = list(map(int,input().split()))
+
+ar.sort()
+cnt = 0
+
+for i in range(n):
+    target = ar[i]
+    start = 0
+    end = n-1
+    while start<end:
+        sub = ar[start] + ar[end]
+        if start == i:
+            start+=1
+            continue
+        elif end == i:
+            end -= 1
+            continue
+        elif sub < target:
+            start+=1
+        elif sub > target:
+            end-=1
+        else:
+            cnt+=1
+            start+=1
+            break
+
+
+print(cnt)
