@@ -1,0 +1,25 @@
+import sys
+from collections import defaultdict
+input = sys.stdin.readline
+
+n,d,k,c = map(int,input().split())
+
+ar = []
+answer = 0
+for _ in range(n):
+    v = int(input())
+    ar.append(v)
+
+for i in range(n):
+    j = i
+    sd = defaultdict(int)
+    for x in range(k):
+        sd[ar[j]]+=1
+        j+=1
+        if j>=n:
+            j=0
+    l = len(sd.keys())
+    if c not in sd:
+        l+=1
+    answer = max(answer,l)
+print(answer)
