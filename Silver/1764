@@ -1,0 +1,24 @@
+from collections import defaultdict
+import sys
+
+input = sys.stdin.readline
+
+n,m = map(int,input().split())
+
+di = defaultdict(int)
+
+for _ in range(n+m):
+  name = input().rstrip()
+  di[name]+=1
+
+dbj = []
+
+for name,count in di.items():
+  if count>=2:
+    dbj.append(name)
+dbj = sorted(dbj)
+
+print(len(dbj))
+
+for name in dbj:
+  print(name)
