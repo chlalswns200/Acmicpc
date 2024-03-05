@@ -1,0 +1,22 @@
+import sys
+from collections import defaultdict
+input = sys.stdin.readline
+
+n,m = map(int,input().split())
+
+pokemon_dict = defaultdict(int)
+num = 1
+
+for _ in range(n):
+  pokemon = input().rstrip()
+  pokemon_dict[pokemon]+=num
+  num+=1
+
+pokemon_dict_rvs = dict(map(reversed, pokemon_dict.items()))
+
+for _ in range(m):
+  pokemon = input().rstrip()
+  if pokemon in pokemon_dict:
+    print(pokemon_dict[pokemon])
+  elif int(pokemon) in pokemon_dict_rvs:
+    print(pokemon_dict_rvs[int(pokemon)])
