@@ -1,0 +1,17 @@
+import sys
+
+input = sys.stdin.readline
+
+
+n = int(input())
+
+ar = []
+
+for _ in range(n):
+    age,name = map(str,input().split())
+    ar.append((int(age),name))
+
+sorted_ar = sorted(ar,key = lambda x:(x[0]))
+
+for age,name in sorted_ar:
+    print(age,name)
