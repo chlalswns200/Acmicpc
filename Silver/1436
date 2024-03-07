@@ -1,0 +1,14 @@
+import sys
+
+input = sys.stdin.readline
+dooms = '666'
+
+n = int(input())
+count = 0
+
+for i in range(666,2700000):
+    if dooms in str(i):
+        count += 1
+        if count == n:
+            print(i)
+            break
