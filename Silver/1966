@@ -1,0 +1,26 @@
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+
+t = int(input())
+
+for _ in range(t):
+
+    n, m = map(int, input().split())
+    ar = list(map(int,input().split()))
+    queue = deque()
+    cnt = 0
+    for i in range(len(ar)):
+        queue.append((ar[i],i))
+
+    while queue:
+        max_num = max(queue, key=lambda x:x[0])
+        num, idx = queue.popleft()
+        if num < max_num[0]:
+            queue.append((num,idx))
+        else:
+            cnt+=1
+            if m == idx:
+                print(cnt)
+                break
