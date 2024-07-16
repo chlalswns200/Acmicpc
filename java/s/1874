@@ -1,0 +1,48 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] ar = new int[n];
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+        Stack<Integer> st = new Stack<>();
+
+        StringBuffer sb = new StringBuffer();
+        int num = 1;
+        boolean result = true;
+
+        for (int i = 0; i < ar.length; i++) {
+            int tmp = ar[i];
+            if (tmp >= num) {
+                while (tmp >= num) {
+                    st.push(num++);
+                    sb.append("+\n");
+                }
+                st.pop();
+                sb.append("-\n");
+            }
+            else {
+                int a = st.pop();
+                if (a > tmp) {
+                    System.out.println("NO");
+                    result = false;
+                    break;
+                } else {
+                    sb.append("-\n");
+                }
+            }
+        }
+        if (result) System.out.println(sb.toString());
+    }
+}
