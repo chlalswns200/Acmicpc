@@ -1,0 +1,56 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int n = Integer.parseInt(br.readLine());
+
+        Stack<Integer> st = new Stack<>();
+
+        for (int i = 0; i < n; i++) {
+            StringTokenizer stn = new StringTokenizer(br.readLine());
+            int cmd = Integer.parseInt(stn.nextToken());
+            int var = 0;
+
+            if (cmd == 1) {
+                var = Integer.parseInt(stn.nextToken());
+                st.push(var);
+            } else if (cmd == 2) {
+                if (st.isEmpty()) {
+                    bw.write("-1\n");
+                } else {
+                    Integer pop = st.pop();
+                    bw.write(pop + "\n");
+                }
+            } else if (cmd == 3) {
+                bw.write(st.size() + "\n");
+            } else if (cmd == 4) {
+                if (st.isEmpty()) {
+                    bw.write("1\n");
+                } else {
+                    bw.write("0\n");
+                }
+            } else {
+                if (st.isEmpty()) {
+                    bw.write("-1\n");
+                } else {
+                    Integer peek = st.peek();
+                    bw.write(peek + "\n");
+                }
+            }
+        }
+        bw.flush();
+        bw.close();
+        br.close();
+    }
+}
