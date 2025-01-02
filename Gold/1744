@@ -1,0 +1,53 @@
+import java.util.Collections;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int oneCnt = 0;
+        int zeroCnt = 0;
+        int sum = 0;
+
+        PriorityQueue<Integer> plus = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> minus = new PriorityQueue<>();
+
+        for (int i = 0; i < n; i++) {
+            int num = sc.nextInt();
+            if (num > 1) {
+                plus.add(num);
+            } else if (num < 0) {
+                minus.add(num);
+            } else if (num == 1) {
+                oneCnt++;
+            } else {
+                zeroCnt++;
+            }
+        }
+
+        while (plus.size() >= 2) {
+            Integer numA = plus.remove();
+            Integer numB = plus.remove();
+            sum += numA * numB;
+        }
+        if (plus.size() == 1) {
+            Integer num = plus.remove();
+            sum += num;
+        }
+        while (minus.size()>=2) {
+            Integer numA = minus.remove();
+            Integer numB = minus.remove();
+            sum += numA * numB;
+        }
+        if (minus.size() == 1 && zeroCnt <= 0) {
+            Integer num = minus.remove();
+            sum += num;
+        }
+
+        sum += oneCnt;
+        System.out.println(sum);
+    }
+
+}
