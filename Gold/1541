@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String exp = sc.nextLine();
+        String[] split = exp.split("-");
+        int total = 0;
+        for (int i = 0; i < split.length; i++) {
+            int tmp = sum2(split[i]);
+            if (i == 0) {
+                total = total + tmp;
+            } else {
+                total = total - tmp;
+            }
+        }
+        System.out.println(total);
+    }
+    static int sum2(String a) {
+        int sum = 0;
+        String[] split = a.split("[+]");
+        for (int i = 0; i < split.length; i++) {
+            sum += Integer.parseInt(split[i]);
+        }
+        return sum;
+    }
+
+}
