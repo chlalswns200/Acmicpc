@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = 10000000;
+        int m = sc.nextInt();
+
+        int[] arr = new int[n + 1];
+
+        for (int i = 2; i <= n; i++) {
+            arr[i] = i;
+        }
+
+        for (int i = 2; i <= n; i++) {
+            int j = 2;
+            if (arr[i] != 0) {
+                while (arr[i] * j <= n) {
+                    int era = arr[i] * j;
+                    arr[era] = 0;
+                    j++;
+                }
+            }
+        }
+
+        for (int i = 0; i <= n; i++) {
+            int num = arr[i];
+            if (num != 0 && num>=m) {
+                String s = Integer.toString(num);
+                StringBuffer reverse = new StringBuffer(s).reverse();
+                if (s.equals(reverse.toString())) {
+                    System.out.println(s);
+                    break;
+                }
+            }
+
+        }
+    }
+
+}
