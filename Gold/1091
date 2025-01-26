@@ -1,0 +1,62 @@
+package org.example;
+
+public class Main {
+	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer tokens;
+	static int N,P[],S[],card[],temp[];
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		input = new BufferedReader(new StringReader(src));
+		N = Integer.parseInt(input.readLine());
+		P = new int[N];
+		S = new int[N];
+		card = new int[N];
+		temp = new int[N];
+		int cnt = 0;
+		
+		for(int i=0; i<N; i++) {
+			card[i] = i%3;
+		}
+		tokens = new StringTokenizer(input.readLine());
+		for(int i=0; i<N; i++) {
+			P[i] = Integer.parseInt(tokens.nextToken());
+		}
+		tokens = new StringTokenizer(input.readLine());
+		for(int i=0; i<N; i++) {
+			S[i] = Integer.parseInt(tokens.nextToken());
+		}
+		
+		while(true) {
+			boolean isMatched = true; 
+			boolean inf = true;
+			for(int i=0; i<N; i++) {
+				if(card[i] != P[i]) {
+					isMatched = false;
+					break;
+				}
+			}
+			if(!isMatched) {
+				for(int i=0; i<N; i++) {
+					temp[i] = card[S[i]];
+				}
+				card = temp.clone();
+				cnt++;
+			}else {
+				System.out.println(cnt);
+				break;
+			}
+			
+			for(int i=0; i<N; i++) {
+				if(card[i] != i%3) {
+					inf = false;
+				}
+			}
+			if(inf) {
+				System.out.println(-1);
+				break;
+			}
+		}
+		
+		 
+		
+	}
+}
